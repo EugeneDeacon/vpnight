@@ -7,6 +7,19 @@ from src.services.base import BaseService
 class UserService(BaseService[UserRepository]):
     _repo_class = UserRepository
 
+    async def get_by_id(self, id: int) -> User | None:
+        assert self.repo
+
+        if id is None:
+            raise ValueError("User ID is required")
+
+        existing_user = await self.repo.get_by_id(id)
+
+        if not existing_user:
+            raise ValueError("User not found")
+
+        return existing_user
+
     async def register(self, user_info: Dict) -> User:
         assert self.repo
 
