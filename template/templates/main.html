@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Скачать приложение</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link inline rel="stylesheet" href="../css/style.css" />
+    </head>
+    <body>
+        <div class="night-sky" id="nightSky"></div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Subscription Info -->
+                <div class="subscription-info">
+                    <div class="subscription-block">
+                        <div class="subscription-logo">
+                            <div class="subscription-logo-inner">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                        </div>
+                        <h1><span style="color: #60a5fa">Night</span> VPN</h1>
+                        <div class="subscription-title">
+                            Дата окончания подписки
+                        </div>
+                        <div class="subscription-date" id="subscriptionDate">
+                            15.03.2024
+                        </div>
+                        <div class="subscription-counter">
+                            <div class="subscription-days" id="daysRemaining">
+                                42
+                            </div>
+                            <div class="subscription-label" id="daysLabel">
+                                дня осталось
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform accordion -->
+                <div class="accordion">
+                    <!-- Android -->
+                    <div class="accordion-item" data-platform="android">
+                        <button class="accordion-trigger">
+                            <div class="platform-info">
+                                <div class="platform-icon">
+                                    <i class="fab fa-android"></i>
+                                </div>
+                                <div class="platform-details">
+                                    <h3>Android</h3>
+                                    <div class="platform-meta">
+                                        v2RayTun • Hiddify
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <div class="app-list">
+                                    <div class="app-item">
+                                        <div class="app-info">
+                                            <div class="app-name">v2RayTun</div>
+                                            <div class="app-meta">
+                                                4.4 ★ • 72.7 MB
+                                            </div>
+                                        </div>
+                                        <div class="app-buttons">
+                                            <button
+                                                class="btn-icon download"
+                                                onclick="downloadApp('https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=ru')"
+                                            >
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <a
+                                                class="btn-icon share"
+                                                href="v2raytun://import/{{ user.subscription_url }}"
+                                                target="_blank"
+                                            >
+                                                <i class="fas fa-share"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="app-item">
+                                        <div class="app-info">
+                                            <div class="app-name">Hiddify</div>
+                                            <div class="app-meta">
+                                                4,9 ★ • 40.5 MB
+                                            </div>
+                                        </div>
+                                        <div class="app-buttons">
+                                            <button
+                                                class="btn-icon download"
+                                                onclick="downloadApp('https://play.google.com/store/apps/details?id=app.hiddify.com&hl=ru')"
+                                            >
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <a
+                                                class="btn-icon share"
+                                                href="hiddify://import/{{ user.subscription_url }}"
+                                                target="_blank"
+                                            >
+                                                <i class="fas fa-share"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- iOS -->
+                    <div class="accordion-item" data-platform="ios">
+                        <button class="accordion-trigger">
+                            <div class="platform-info">
+                                <div class="platform-icon">
+                                    <i class="fab fa-apple"></i>
+                                </div>
+                                <div class="platform-details">
+                                    <h3>iOS</h3>
+                                    <div class="platform-meta">Streisand</div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <div class="app-list">
+                                    <div class="app-item">
+                                        <div class="app-info">
+                                            <div class="app-name">
+                                                Streisand
+                                            </div>
+                                            <div class="app-meta">
+                                                3.6 ★ • 149,6 MB
+                                            </div>
+                                        </div>
+                                        <div class="app-buttons">
+                                            <button
+                                                class="btn-icon download"
+                                                onclick="downloadApp('https://apps.apple.com/ru/app/streisand/id6450534064')"
+                                            >
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <a
+                                                class="btn-icon share"
+                                                href="streisand://import/{{ user.subscription_url }}"
+                                                target="_blank"
+                                            >
+                                                <i class="fas fa-share"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Windows -->
+                    <div class="accordion-item" data-platform="windows">
+                        <button class="accordion-trigger">
+                            <div class="platform-info">
+                                <div class="platform-icon">
+                                    <i class="fab fa-windows"></i>
+                                </div>
+                                <div class="platform-details">
+                                    <h3>Windows</h3>
+                                    <div class="platform-meta">
+                                        v2.0.8 • 45.1 MB
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <div class="app-list">
+                                    <div class="app-item">
+                                        <div class="app-info">
+                                            <div class="app-name">
+                                                MyApp Desktop
+                                            </div>
+                                            <div class="app-meta">
+                                                v2.0.8 • 45.1 MB
+                                            </div>
+                                        </div>
+                                        <div class="app-buttons">
+                                            <button
+                                                class="btn-icon download"
+                                                onclick="downloadApp('MyApp Desktop', 'Windows')"
+                                            >
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button
+                                                class="btn-icon share"
+                                                onclick="shareApp('MyApp Desktop', 'Windows')"
+                                            >
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="app-item">
+                                        <div class="app-info">
+                                            <div class="app-name">
+                                                MyApp Portable
+                                            </div>
+                                            <div class="app-meta">
+                                                v2.0.6 • 38.9 MB
+                                            </div>
+                                        </div>
+                                        <div class="app-buttons">
+                                            <button
+                                                class="btn-icon download"
+                                                onclick="downloadApp('MyApp Portable', 'Windows')"
+                                            >
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button
+                                                class="btn-icon share"
+                                                onclick="shareApp('MyApp Portable', 'Windows')"
+                                            >
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="app-item">
+                                        <div class="app-info">
+                                            <div class="app-name">
+                                                MyApp Enterprise
+                                            </div>
+                                            <div class="app-meta">
+                                                v1.9.5 • 52.3 MB
+                                            </div>
+                                        </div>
+                                        <div class="app-buttons">
+                                            <button
+                                                class="btn-icon download"
+                                                onclick="downloadApp('MyApp Enterprise', 'Windows')"
+                                            >
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button
+                                                class="btn-icon share"
+                                                onclick="shareApp('MyApp Enterprise', 'Windows')"
+                                            >
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share Link -->
+                <div class="share-link">
+                    <div class="share-link-container">
+                        <div class="share-link-input" id="shareUrl">
+                            {{ user.subscription_url }}
+                        </div>
+                        <button class="copy-btn" onclick="copyShareLink()">
+                            <i class="fas fa-copy" id="copyIcon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script inline src="../js/script.js"></script>
+    </body>
+</html>

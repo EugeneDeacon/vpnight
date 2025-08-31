@@ -1,0 +1,620 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Скачать приложение</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+
+/* Night sky container */
+.night-sky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #1e1b4b, #0f172a, #1e293b);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Stars */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Shooting stars */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to top, transparent, #ffffff, #ffffff);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: shoot 2s linear forwards;
+}
+
+@keyframes shoot {
+    from {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(300px) translateY(300px);
+        opacity: 0;
+    }
+}
+
+/* Main content */
+.main-content {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+/* Subscription Info */
+.subscription-info {
+    width: 100%;
+    max-width: 384px;
+    margin: 0 auto 64px;
+}
+
+.subscription-block {
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    border: 1px solid #475569;
+    padding: 32px;
+    text-align: center;
+}
+
+.subscription-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.subscription-logo-inner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(51, 65, 85, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    border: 1px solid rgba(71, 85, 105, 1);
+    color: #60a5fa;
+    font-size: 48px;
+}
+
+.subscription-title {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.subscription-date {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.subscription-counter {
+    background: rgba(51, 65, 85, 0.5);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.subscription-days {
+    color: #60a5fa;
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.subscription-label {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+/* Share Link */
+.share-link {
+    width: 100%;
+    max-width: 384px;
+    margin: 15px auto;
+}
+
+.share-link-container {
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    border: 1px solid #475569;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.share-link-input {
+    flex: 1;
+    background: rgba(51, 65, 85, 0.5);
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    color: #cbd5e1;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.copy-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: rgba(51, 65, 85, 0.5);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 8px;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    background: rgba(71, 85, 105, 0.5);
+}
+
+/* Accordion */
+.accordion {
+    width: 100%;
+    max-width: 512px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.accordion-item {
+    border: 1px solid #475569;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+}
+
+.accordion-trigger {
+    width: 100%;
+    padding: 24px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.2s;
+}
+
+.accordion-trigger:hover {
+    background: rgba(51, 65, 85, 0.3);
+}
+
+.platform-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.platform-icon {
+    color: #60a5fa;
+    font-size: 20px;
+}
+
+.platform-details h3 {
+    font-size: 16px;
+    color: white;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.platform-meta {
+    font-size: 14px;
+    color: #94a3b8;
+    text-align: left;
+}
+
+.chevron {
+    color: #94a3b8;
+    transition: transform 0.2s;
+    font-size: 16px;
+}
+
+.accordion-item.active .chevron {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 400px;
+}
+
+.accordion-content-inner {
+    padding: 0 24px 24px;
+}
+
+.description {
+    color: #cbd5e1;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+/* App list styles */
+.app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 24px;
+}
+
+.app-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 6px;
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    transition: background-color 0.2s;
+}
+
+.app-item:hover {
+    background: rgba(51, 65, 85, 0.5);
+}
+
+.app-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.app-info {
+    flex: 1;
+}
+
+.app-name {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.app-meta {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #475569;
+    color: #cbd5e1;
+}
+
+.btn-outline:hover {
+    background: rgba(51, 65, 85, 1);
+}
+
+.btn i {
+    font-size: 16px;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.btn-sm i {
+    font-size: 12px;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: rgba(51, 65, 85, 0.5);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.btn-icon:hover {
+    background: rgba(71, 85, 105, 0.5);
+}
+
+.btn-icon.download {
+    color: #60a5fa;
+}
+
+.btn-icon.share {
+    color: #cbd5e1;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 48px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .subscription-title {
+        font-size: 16px;
+    }
+
+    .subscription-days {
+        font-size: 20px;
+    }
+
+    /* .app-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    } */
+
+    /* .app-buttons {
+        width: 100%;
+        justify-content: flex-start;
+    } */
+}</style></head><body><div class="night-sky" id="nightSky"></div><div class="main-content"><div class="container"><div class="subscription-info"><div class="subscription-block"><div class="subscription-logo"><div class="subscription-logo-inner"><i class="fas fa-bolt"></i></div></div><h1><span style="color: #60a5fa">Night</span> VPN</h1><div class="subscription-title">Дата окончания подписки</div><div class="subscription-date" id="subscriptionDate">15.03.2024</div><div class="subscription-counter"><div class="subscription-days" id="daysRemaining">42</div><div class="subscription-label" id="daysLabel">дня осталось</div></div></div></div><div class="accordion"><div class="accordion-item" data-platform="android"><button class="accordion-trigger"><div class="platform-info"><div class="platform-icon"><i class="fab fa-android"></i></div><div class="platform-details"><h3>Android</h3><div class="platform-meta">v2RayTun • Hiddify</div></div></div><i class="fas fa-chevron-down chevron"></i></button><div class="accordion-content"><div class="accordion-content-inner"><div class="app-list"><div class="app-item"><div class="app-info"><div class="app-name">v2RayTun</div><div class="app-meta">4.4 ★ • 72.7 MB</div></div><div class="app-buttons"><button class="btn-icon download" onclick="downloadApp('https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=ru')"><i class="fas fa-download"></i></button> <a class="btn-icon share" href="v2raytun://import/{{ user.subscription_url }}" target="_blank"><i class="fas fa-share"></i></a></div></div><div class="app-item"><div class="app-info"><div class="app-name">Hiddify</div><div class="app-meta">4,9 ★ • 40.5 MB</div></div><div class="app-buttons"><button class="btn-icon download" onclick="downloadApp('https://play.google.com/store/apps/details?id=app.hiddify.com&hl=ru')"><i class="fas fa-download"></i></button> <a class="btn-icon share" href="hiddify://import/{{ user.subscription_url }}" target="_blank"><i class="fas fa-share"></i></a></div></div></div></div></div></div><div class="accordion-item" data-platform="ios"><button class="accordion-trigger"><div class="platform-info"><div class="platform-icon"><i class="fab fa-apple"></i></div><div class="platform-details"><h3>iOS</h3><div class="platform-meta">Streisand</div></div></div><i class="fas fa-chevron-down chevron"></i></button><div class="accordion-content"><div class="accordion-content-inner"><div class="app-list"><div class="app-item"><div class="app-info"><div class="app-name">Streisand</div><div class="app-meta">3.6 ★ • 149,6 MB</div></div><div class="app-buttons"><button class="btn-icon download" onclick="downloadApp('https://apps.apple.com/ru/app/streisand/id6450534064')"><i class="fas fa-download"></i></button> <a class="btn-icon share" href="streisand://import/{{ user.subscription_url }}" target="_blank"><i class="fas fa-share"></i></a></div></div></div></div></div></div><div class="accordion-item" data-platform="windows"><button class="accordion-trigger"><div class="platform-info"><div class="platform-icon"><i class="fab fa-windows"></i></div><div class="platform-details"><h3>Windows</h3><div class="platform-meta">v2.0.8 • 45.1 MB</div></div></div><i class="fas fa-chevron-down chevron"></i></button><div class="accordion-content"><div class="accordion-content-inner"><div class="app-list"><div class="app-item"><div class="app-info"><div class="app-name">MyApp Desktop</div><div class="app-meta">v2.0.8 • 45.1 MB</div></div><div class="app-buttons"><button class="btn-icon download" onclick="downloadApp('MyApp Desktop', 'Windows')"><i class="fas fa-download"></i></button> <button class="btn-icon share" onclick="shareApp('MyApp Desktop', 'Windows')"><i class="fas fa-share"></i></button></div></div><div class="app-item"><div class="app-info"><div class="app-name">MyApp Portable</div><div class="app-meta">v2.0.6 • 38.9 MB</div></div><div class="app-buttons"><button class="btn-icon download" onclick="downloadApp('MyApp Portable', 'Windows')"><i class="fas fa-download"></i></button> <button class="btn-icon share" onclick="shareApp('MyApp Portable', 'Windows')"><i class="fas fa-share"></i></button></div></div><div class="app-item"><div class="app-info"><div class="app-name">MyApp Enterprise</div><div class="app-meta">v1.9.5 • 52.3 MB</div></div><div class="app-buttons"><button class="btn-icon download" onclick="downloadApp('MyApp Enterprise', 'Windows')"><i class="fas fa-download"></i></button> <button class="btn-icon share" onclick="shareApp('MyApp Enterprise', 'Windows')"><i class="fas fa-share"></i></button></div></div></div></div></div></div></div><div class="share-link"><div class="share-link-container"><div class="share-link-input" id="shareUrl">{{ user.subscription_url }}</div><button class="copy-btn" onclick="copyShareLink()"><i class="fas fa-copy" id="copyIcon"></i></button></div></div></div></div><script>// Generate stars
+function generateStars() {
+    const nightSky = document.getElementById('nightSky');
+    const numStars = 100;
+
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = (Math.random() * 2 + 0.5) + 'px';
+        star.style.height = star.style.width;
+        star.style.opacity = Math.random() * 0.8 + 0.2;
+        star.style.animationDuration = (2 + Math.random() * 3) + 's';
+        nightSky.appendChild(star);
+    }
+}
+// Generate shooting stars
+function createShootingStar() {
+    if (Math.random() > 0.1) {
+        const nightSky = document.getElementById('nightSky');
+        const shootingStar = document.createElement('div');
+        shootingStar.className = 'shooting-star';
+        shootingStar.style.left = Math.random() * 100 + '%';
+        shootingStar.style.top = Math.random() * 30 + '%';
+
+        const rotation = Math.random() * 60 + 15;
+        shootingStar.style.transform = `rotate(${rotation}deg)`;
+
+        nightSky.appendChild(shootingStar);
+
+        // Remove after animation
+        setTimeout(() => {
+            if (shootingStar.parentNode) {
+                nightSky.removeChild(shootingStar);
+            }
+        }, 4000);
+    }
+}
+
+// Accordion functionality
+function initAccordion() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+        const trigger = item.querySelector('.accordion-trigger');
+
+        trigger.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all items
+            accordionItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+// Download and share functions
+function downloadApp(url) {
+    window.location.href = url;
+}
+
+function shareApp(url) {
+
+    window.location.href = url;
+}
+
+// Copy share link function
+function copyShareLink() {
+    const shareUrl = document.getElementById('shareUrl').textContent;
+    const copyIcon = document.getElementById('copyIcon');
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            // Change icon to checkmark
+            copyIcon.className = 'fas fa-check';
+            setTimeout(() => {
+                copyIcon.className = 'fas fa-copy';
+            }, 2000);
+        });
+    } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = shareUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        // Change icon to checkmark
+        copyIcon.className = 'fas fa-check';
+        setTimeout(() => {
+            copyIcon.className = 'fas fa-copy';
+        }, 2000);
+    }
+}
+
+// Calculate subscription days
+function updateSubscriptionInfo() {
+    const subscriptionEndDate = new Date('2024-03-15');
+    const currentDate = new Date();
+    const timeDiff = subscriptionEndDate.getTime() - currentDate.getTime();
+    const daysRemaining = Math.max(0, Math.ceil(timeDiff / (1000 * 3600 * 24)));
+
+    document.getElementById('daysRemaining').textContent = daysRemaining;
+    document.getElementById('subscriptionDate').textContent = subscriptionEndDate.toLocaleDateString('ru-RU');
+
+    let label = 'дней осталось';
+    if (daysRemaining === 1) {
+        label = 'день остался';
+    } else if (daysRemaining < 5) {
+        label = 'дня осталось';
+    }
+    document.getElementById('daysLabel').textContent = label;
+}
+
+function generateExpiredDate() {
+    const expireTimestamp = {{ user.expire }};
+
+    // Проверяем, что дата валидна
+    if (expireTimestamp && !isNaN(expireTimestamp)) {
+        const date = new Date(expireTimestamp * 1000); // JS использует миллисекунды
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        document.getElementById('subscriptionDate').textContent = `${day}.${month}.${year}`;
+    } else {
+
+    }
+}
+
+function generateExpiredDays() {
+  // Получаем дату окончания из шаблона (в секундах)
+  const expireTimestamp = {{ user.expire if user.expire else 'null' }};
+
+  const daysRemainingElement = document.getElementById('daysRemaining');
+  const daysLabelElement = document.getElementById('daysLabel');
+
+  // Если дата не установлена (бессрочно)
+  if (expireTimestamp === null) {
+    daysRemainingElement.textContent = '∞';
+    daysLabelElement.textContent = 'бессрочно';
+    daysLabelElement.style.color = '#2196F3';
+    daysRemainingElement.style.color = '#2196F3';
+    daysRemainingElement.style.fontWeight = 'bold';
+    document.querySelector('.subscription-title').textContent = 'Статус подписки';
+    return;
+  }
+
+  // Текущее время в секундах
+  const now = Math.floor(Date.now() / 1000);
+
+  // Разница в днях (округляем вверх, чтобы 1.2 дня = 2 дня)
+  const diffInSeconds = expireTimestamp - now;
+  const daysLeft = Math.ceil(diffInSeconds / (24 * 60 * 60));
+
+  // Обновляем число
+  daysRemainingElement.textContent = daysLeft > 0 ? daysLeft : '0';
+
+  // Склонение: день, дня, дней
+  let label;
+  if (daysLeft === 1) {
+    label = 'день остался';
+  } else if (daysLeft >= 2 && daysLeft <= 4) {
+    label = 'дня осталось';
+  } else {
+    label = 'дней осталось';
+  }
+
+  // Если подписка уже закончилась
+  if (daysLeft <= 0) {
+    daysRemainingElement.textContent = '0';
+    label = 'подписка истекла';
+  }
+
+  // Устанавливаем текст
+  daysLabelElement.textContent = label;
+}
+
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+    generateStars();
+    initAccordion();
+    updateSubscriptionInfo();
+    generateExpiredDate();
+    generateExpiredDays();
+
+    // Start shooting stars interval
+    setInterval(createShootingStar, 3000);
+});</script></body></html>

@@ -1,7 +1,30 @@
 version: "3.9"
 
 services:
+  bot:
+    container_name: vpnight_bot
+
+    build: ./bot/
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_URL: ${BOT_URL}
+      MARZBAN_URL: ${MARZBAN_URL}
+      MARZBAN_LOGIN: ${MARZBAN_LOGIN}
+      MARZBAN_PASSWORD: ${MARZBAN_PASSWORD}
+      GOTIFY_URL: ${GOTIFY_URL}
+      GOTIFY_TOKEN: ${GOTIFY_TOKEN}
+      PRICE_1: ${PRICE_1}
+      PRICE_3: ${PRICE_3}
+      DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - "8000:8000"
+
   db:
+    container_name: vpnight_db
+
     image: postgres:16-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -13,9 +36,21 @@ services:
       - vpnight_pg_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
+      interval: 10s
+      timeout: 10s
       retries: 10
+
+  gotify:
+    container_name: vpnight_gotify
+
+    image: gotify/server
+    ports:
+      - 8080:80
+    environment:
+      GOTIFY_DEFAULTUSER_PASS: ${GOTIFY_DEFAULTUSER_PASS}
+    volumes:
+      - vpnight_gotify_data:/app/data
 
 volumes:
   vpnight_pg_data:
+  vpnight_gotify_data:
